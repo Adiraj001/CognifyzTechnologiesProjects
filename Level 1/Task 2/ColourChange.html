@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BG Colour Change</title>
+    <style>
+        body {
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        #colorBtn {
+            background-color: #7fd8f7;
+            color: #222;
+            padding: 16px 36px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 30px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s, transform 0.2s;
+            outline: none;
+        }
+        #colorBtn:active {
+            transform: scale(0.97);
+        }
+    </style>
+</head>
+<body>
+    <button id="colorBtn">Click Me</button>
+    <script>
+        const btn = document.getElementById('colorBtn');
+        let isBlue = true;
+        btn.addEventListener('click', function() {
+            if (isBlue) {
+                this.style.backgroundColor = '#7ff7b0';
+                this.style.color = '#1a3a2b';
+            } else {
+                this.style.backgroundColor = '#7fd8f7';
+                this.style.color = '#222';
+            }
+            isBlue = !isBlue;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screen</title>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Aditya Raj Pandey</div>
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        <label for="menu-toggle" class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+        <ul class="nav-links">
+            <li><a href="">Home</a></li>
+            <li><a href="">About</a></li>
+            <li><a href="">Services</a></li>
+            <li><a href="">Contact</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section class="hero">
+            <h1>Welcome to My Website</h1>
+            <p>This page adapts to different screen sizes and features a mobile-friendly navigation menu.</p>
+        </section>
+    </main>
+    <style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background: linear-gradient(135deg, #232526 0%, #414345 100%);
+        color: #f5f5f5;
+        min-height: 100vh;
+    }
+    .navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: rgba(34, 40, 49, 0.98);
+        color: #fff;
+        padding: 0 2rem;
+        position: relative;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        z-index: 10;
+    }
+    .logo {
+        font-size: 2rem;
+        font-weight: bold;
+        letter-spacing: 1px;
+        padding: 1rem 0;
+        color: #ff9800;
+        text-shadow: 1px 1px 8px #2226;
+    }
+    .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 2rem;
+        margin: 0;
+        padding: 0;
+    }
+    .nav-links li a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 1.1rem;
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        transition: background 0.2s, color 0.2s;
+    }
+    .nav-links li a:hover {
+        background: #ff9800;
+        color: #232526;
+    }
+    .menu-toggle {
+        display: none;
+    }
+    .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        width: 32px;
+        height: 28px;
+        justify-content: space-between;
+        margin-left: 1rem;
+    }
+    .hamburger span {
+        display: block;
+        height: 4px;
+        background: #ff9800;
+        border-radius: 2px;
+        transition: 0.3s;
+        box-shadow: 0 1px 4px #2224;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 900px) {
+        .navbar {
+            padding: 0 1rem;
+        }
+        .logo {
+            font-size: 1.5rem;
+        }
+        .nav-links {
+            gap: 1rem;
+        }
+    }
+    @media (max-width: 768px) {
+        .nav-links {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(34, 40, 49, 0.98);
+            flex-direction: column;
+            align-items: flex-start;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+        .nav-links li {
+            width: 100%;
+        }
+        .nav-links li a {
+            display: block;
+            width: 100%;
+            padding: 1.2rem 2rem;
+            font-size: 1.1rem;
+        }
+        .menu-toggle:checked + .hamburger + .nav-links {
+            max-height: 400px;
+        }
+        .hamburger {
+            display: flex;
+        }
+    }
+
+    main {
+        padding: 0;
+        min-height: calc(100vh - 70px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .hero {
+        max-width: 600px;
+        margin: 4rem auto 0 auto;
+        background: rgba(34, 40, 49, 0.92);
+        border-radius: 18px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+        padding: 3rem 2.5rem;
+        text-align: center;
+        animation: fadeIn 1.2s;
+    }
+    .hero h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: #ff9800;
+        letter-spacing: 1px;
+        text-shadow: 1px 1px 8px #2226;
+    }
+    .hero p {
+        font-size: 1.2rem;
+        color: #f5f5f5;
+        margin-bottom: 2rem;
+        line-height: 1.6;
+    }
+    @media (max-width: 600px) {
+        .hero {
+            padding: 2rem 1rem;
+        }
+        .hero h1 {
+            font-size: 2rem;
+        }
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(30px);}
+        to { opacity: 1; transform: translateY(0);}
+    }
+    </style>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Manipulation</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:600,400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(120deg, #e0eafc 0%, #cfdef3 100%);
+            font-family: 'Montserrat', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #222;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 32px;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            color: #0078d7;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 32px 16px 16px 16px;
+        }
+        .slideshow {
+            width: 100%;
+            max-width: 500px;
+            height: 300px;
+            margin: 0 auto 40px auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+            background: #fff;
+        }
+        .slideshow input[type="radio"] {
+            display: none;
+        }
+        .slide {
+            position: absolute;
+            width: 100%; height: 100%;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+        #slide1:checked ~ .slides .img1,
+        #slide2:checked ~ .slides .img2,
+        #slide3:checked ~ .slides .img3 {
+            opacity: 1;
+            z-index: 2;
+        }
+        .slideshow .slides img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            border-radius: 16px;
+        }
+        .slideshow .nav {
+            position: absolute;
+            width: 100%;
+            bottom: 18px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            z-index: 3;
+        }
+        .slideshow .nav label {
+            display: block;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #bbb;
+            cursor: pointer;
+            border: 2px solid #fff;
+            transition: background 0.2s;
+        }
+        #slide1:checked ~ .nav label[for="slide1"],
+        #slide2:checked ~ .nav label[for="slide2"],
+        #slide3:checked ~ .nav label[for="slide3"] {
+            background: #0078d7;
+        }
+        @keyframes slideshow {
+            0% { opacity: 1; }
+            33% { opacity: 0; }
+            100% { opacity: 0; }
+        }
+        .slideshow .slides .img1 { animation: slideshow 9s infinite; animation-delay: 0s; }
+        .slideshow .slides .img2 { animation: slideshow 9s infinite; animation-delay: 3s; }
+        .slideshow .slides .img3 { animation: slideshow 9s infinite; animation-delay: 6s; }
+        .gallery-title {
+            text-align: center;
+            font-size: 1.4rem;
+            margin: 32px 0 18px 0;
+            color: #0078d7;
+            letter-spacing: 1px;
+        }
+        .gallery {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+        .gallery a {
+            display: block;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-radius: 8px;
+            transition: box-shadow 0.2s;
+        }
+        .gallery a:hover {
+            box-shadow: 0 4px 16px rgba(0,120,215,0.18);
+        }
+        .gallery img {
+            width: 140px;
+            height: 100px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 2px solid #e0eafc;
+            border-radius: 8px;
+            transition: transform 0.2s, border-color 0.2s;
+            background: #fff;
+        }
+        .gallery img:hover {
+            transform: scale(1.08);
+            border-color: #0078d7;
+        }
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 10;
+            left: 0; top: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.85);
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s;
+        }
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 85vh;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+            border: 4px solid #fff;
+            background: #fff;
+        }
+        .lightbox:target {
+            display: flex;
+        }
+        .lightbox a {
+            outline: none;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @media (max-width: 700px) {
+            .slideshow { max-width: 98vw; height: 40vw; min-height: 180px;}
+            .gallery img { width: 90px; height: 60px; }
+        }
+        @media (max-width: 500px) {
+            .container { padding: 10px 2px; }
+            .slideshow { max-width: 99vw; height: 38vw; min-height: 120px;}
+            .gallery img { width: 70px; height: 48px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Image Manipulation</h1>
+        <!-- Slideshow -->
+        <div class="slideshow">
+            <input type="radio" name="slide" id="slide1" checked>
+            <input type="radio" name="slide" id="slide2">
+            <input type="radio" name="slide" id="slide3">
+            <div class="slides">
+                <img src="1 (1).jpeg" class="slide img1" alt="Slideshow 1">
+                <img src="1 (2).jpeg" class="slide img2" alt="Slideshow 2">
+                <img src="1 (3).jpeg" class="slide img3" alt="Slideshow 3">
+            </div>
+            <div class="nav">
+                <label for="slide1"></label>
+                <label for="slide2"></label>
+                <label for="slide3"></label>
+            </div>
+        </div>
+
+        <div class="gallery-title">Gallery</div>
+        <!-- Image Gallery -->
+        <div class="gallery">
+            <a href="#lightbox1"><img src="1 (1).jpeg" alt="Thumb 1"></a>
+            <a href="#lightbox2"><img src="1 (2).jpeg" alt="Thumb 2"></a>
+            <a href="#lightbox3"><img src="1 (3).jpeg" alt="Thumb 3"></a>
+            <a href="#lightbox4"><img src="1 (4).jpeg" alt="Thumb 4"></a>
+            <a href="#lightbox5"><img src="1 (5).jpeg" alt="Thumb 5"></a>
+            <a href="#lightbox6"><img src="1 (6).jpeg" alt="Thumb 6"></a>
+        </div>
+
+        <!-- Lightboxes -->
+        <div id="lightbox1" class="lightbox" tabindex="-1">
+            <a href="#"><img src="1 (1).jpeg" alt="Large 1"></a>
+        </div>
+        <div id="lightbox2" class="lightbox" tabindex="-1">
+            <a href="#"><img src="1 (2).jpeg" alt="Large 2"></a>
+        </div>
+        <div id="lightbox3" class="lightbox" tabindex="-1">
+            <a href="#"><img src="1 (3).jpeg" alt="Large 3"></a>
+        </div>
+        <div id="lightbox4" class="lightbox" tabindex="-1">
+            <a href="#"><img src="1 (4).jpeg" alt="Large 4"></a>
+        </div>
+        <div id="lightbox5" class="lightbox" tabindex="-1">
+            <a href="#"><img src="1 (5).jpeg" alt="Large 5"></a>
+        </div>
+        <div id="lightbox6" class="lightbox" tabindex="-1">
+            <a href="#"><img src="1 (6).jpeg" alt="Large 6"></a>
+        </div>
+    </div>
+</body>
+</html>
